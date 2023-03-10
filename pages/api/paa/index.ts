@@ -12,13 +12,13 @@ export default function handler(
   const reqMethod = req.method;
   switch (reqMethod) {
     case 'GET':
-      res.status(200).json({ name: '[GET] John Doe' });
+      res.status(200).json({ name: '[GET] PAA Index' });
       break;
     case 'POST':
-      res.status(200).json({ name: '[POST] John Doe' });
+      res.status(200).json({ name: '[POST] PAA Index' });
       break;
     default:
-      res.status(200).json({ name: '[DEFAULT] John Doe' });
+      res.status(200).json({ name: '[DEFAULT] PAA Index' });
       break;
   }
 }
