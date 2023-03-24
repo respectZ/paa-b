@@ -1,0 +1,113 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Ajax-Test</title> 
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css"/>
+	<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+<script>
+	
+	
+  $(function() {
+    $('#btn_login').click(function(e) {
+		e.preventDefault();
+		v_data = 
+			{
+            "username": $("#username").val(),
+            "password":$("#password").val()
+			};
+			
+        $.ajax({
+            url: '/login_json',
+			data: JSON.stringify(v_data), 
+			processData: false,
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function(response) {
+                console.log(response);
+                //~ $("#info_login").html( JSON.stringify(response['success']));
+				$("#view_login").hide();
+				if(JSON.stringify(response['success']) == '1')
+				{
+					$("#view_user").show();
+					$('#example').DataTable( {
+						data: response['msg'],
+						columns: [
+							{ data: 'nama_user' },
+							{ data: 'password' },
+							{ data: 'id_person' },
+							{ data: 'kd_sts_aktif' }
+						]
+					} );
+				}
+				else
+				{
+					alert(JSON.stringify(response['msg']));
+					window.location.reload();
+				}
+				
+				return false;
+            },
+            error: function(error) {
+                console.log(error);
+                $("#info_login").html(error['msg'].toString());
+				$("#view_login").show();
+				$("#view_user").show();
+				return false;
+            }
+        });
+    });
+});
+
+
+
+
+</script>
+<body style="padding: 30px;">
+	
+<div id="view_login">	
+<h1>Flask JQuery Example</h1>
+		<div class="form-signin" action='/login' method="post" role="form">
+             <h2 class="form-signin-heading">Please Login </h2>
+             <input type="text" name="username" id="username" class="form-control" placeholder="User name" required autofocus>
+             <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+ 
+             <input type="button" class="btn btn-lg btn-primary btn-block"  id="btn_login" value="Login"> </input>
+        </div>
+         
+</div>	         
+         
+<div id="view_user" style="display: none;">
+	
+	
+	<div class="row">
+		<div class="col-lg-12">
+			
+			<table id="example" class="table-hover" style="width:100%">
+				<thead>
+					<tr>
+						<th>Nama </th>
+						<th>Username</th>
+						<th>Password</th>
+						<th>Status</th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>
+			
+		</div>	
+	</div>	    
+          
+</div>
+
+	
+</body>
+</html>

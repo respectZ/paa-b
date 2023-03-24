@@ -20,7 +20,7 @@ export default function handler(
       res.status(200).send(hasil)
       break;
     case 'POST':
-      res.status(200).json({ name: '[POST] PAA Index', id: 2 });
+      res.status(200).json({ name: '[POST] PAA Index', id: -1 });
       break;
     case 'DELETE':
       res.status(200).json({ name: '[DELETE] PAA Index', id: 2 });

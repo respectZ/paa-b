@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bootstrap": "^5.2.3",
+    "jquery": "^3.6.4",
+    "nanoid": "^4.0.1",
     "next": "13.2.3",
+    "pg": "^8.10.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@types/node": "18.15.0",
+    "@types/pg": "^8.6.6",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "eslint": "8.35.0",
