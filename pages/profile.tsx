@@ -13,6 +13,7 @@ function Profile() {
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
+			//
 			// Perform localStorage action
 			const item = localStorage.getItem("usertoken");
 
